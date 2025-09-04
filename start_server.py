@@ -2,10 +2,12 @@
 import os
 import sys
 from utils.logger import log
+import config_manager
 
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+server_port = config_manager.get("server_port")
 sys.path.append(BASE_DIR)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
@@ -20,5 +22,5 @@ if __name__ == "__main__":
 
     args = sys.argv
     if len(args) == 1:
-        args += ["runserver", "0.0.0.0:8000"]
+        args += ["runserver", f"0.0.0.0:{server_port}"]
     execute_from_command_line(args)
